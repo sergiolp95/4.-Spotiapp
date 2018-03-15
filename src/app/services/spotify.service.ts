@@ -7,7 +7,7 @@ export class SpotifyService {
 
   artistas: any[] = [];
   urlSpotify = 'https://api.spotify.com/v1/';
-  token = 'BQCbad7Z83byNSWSUMKZf0cmLjAH-8S0K6YGx6om9aWMGZ6mhxpy1zHdNtwgMQ5jpNb3IVFjRIEGbbx7lQE';
+  token = 'BQCv1IJysjeXjL6BtuT_Tm7FXv6aSfLfq9M9IJr2Jmnf6dt4Mo_WIi1lWmMVjmlqIgCoo2xvvAFJa0kpcac';
 
   constructor(public http: HttpClient) {
     console.log('Servicio de Spotify listo');
