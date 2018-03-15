@@ -12,6 +12,7 @@ import { SpotifyService } from './services/spotify.service';
 // Pipes
 import { NoImgPipe } from './pipes/no-img.pipe';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
+import { DomseguroPipe2 } from './pipes/domseguro.pipe2';
 
 
 import { AppComponent } from './app.component';
@@ -29,7 +30,8 @@ import { ArtistComponent } from './components/artist/artist.component';
     NavbarComponent,
     NoImgPipe,
     ArtistComponent,
-    DomseguroPipe
+    DomseguroPipe,
+    DomseguroPipe2
   ],
   imports: [
     BrowserModule,
