@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import { Http, RequestOptions, Headers } from '@angular/http';
 
 @Injectable()
 export class SpotifyService {
 
   artistas: any[] = [];
   urlSpotify = 'https://api.spotify.com/v1/';
-  token = 'BQCv1IJysjeXjL6BtuT_Tm7FXv6aSfLfq9M9IJr2Jmnf6dt4Mo_WIi1lWmMVjmlqIgCoo2xvvAFJa0kpcac';
+  token = 'BQDqcAj4P42jZ0nJ7lqFKarTIHVVo6RH5bl5v-31pVC0DEMD0eUoRrbDgrHPK3hlHqOln7rwEAjSc9fwAEs';
+
+  clientId = '86cfb2752b314f598dee31303b8b1a7a';
+  clientSecret = 'b52ccac1ce314b8b8ec5607adaab6d08';
+
 
   constructor(public http: HttpClient) {
     console.log('Servicio de Spotify listo');
@@ -19,6 +24,30 @@ export class SpotifyService {
     });
     return headers;
   }
+
+
+
+  login() {
+    // let authorizationTokenUrl = `https://accounts.spotify.com/api/token`;
+    const authorizationTokenUrl = `/api/token`;
+
+    const header = new Headers();
+    header.append('Authorization', 'Basic  ' + btoa(this.clientId + ':' + this.clientSecret));
+    header.append('Content-Type', 'application/x-www-form-urlencoded;');
+
+    const options = new RequestOptions({ headers: header });
+    const body = 'grant_type=client_credentials';
+
+
+    return this.http.post(authorizationTokenUrl, body, options)
+      .map(data => data.json())
+      .do(token => {
+        this.token = token.access_token;
+        this.tokenType = token.token_type;
+      }, error => console.log(error));
+  }
+
+
 
   getTop(id: string) {
     // const url = this.urlSpotify + 'artists/' + id + '/top-tracks?country=ES';
